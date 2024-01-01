@@ -5,9 +5,12 @@ CREATE TABLE customer_ticket
     jira_task_id INT,
     order_id     INT,
     user_id      INT,
+#   CLOSED,SUBMITTED_IN_JIRA,ASSIGNED_TO_AGENT
     status       VARCHAR(255),
     description  VARCHAR(255),
     created_at   TIMESTAMP,
     updated_at   TIMESTAMP,
-    edited_count INT
+    edited_count INT,
+    FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE
 );

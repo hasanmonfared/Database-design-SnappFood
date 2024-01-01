@@ -1,8 +1,8 @@
 CREATE TABLE biz_auth (
     id INT PRIMARY KEY,
-    firstname VARCHAR(255) CHARACTER SET utf8mb4,
-    lastname VARCHAR(255) CHARACTER SET utf8mb4,
-    address TEXT CHARACTER SET utf8mb4,
+    firstname VARCHAR(255) ,
+    lastname VARCHAR(255) ,
+    address TEXT ,
     email VARCHAR(255),
     cellphone BIGINT,
     username VARCHAR(255),
