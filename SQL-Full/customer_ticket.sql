@@ -7,7 +7,7 @@ CREATE TABLE customer_ticket
     user_id      INT,
 #   CLOSED,SUBMITTED_IN_JIRA,ASSIGNED_TO_AGENT
     status       VARCHAR(255),
-    description  VARCHAR(255),
+    description  TEXT,
     created_at   TIMESTAMP,
     updated_at   TIMESTAMP,
     edited_count INT,

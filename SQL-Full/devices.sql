@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS devices
     app_version     VARCHAR(255),
     device_type     VARCHAR(255),
     udid            VARCHAR(255),
+    # PWA,SUPERAPP,IRANCELL,WEBSITE,ANDROID
     platform        VARCHAR(255),
     created_at      TIMESTAMP,
     updated_at      TIMESTAMP,

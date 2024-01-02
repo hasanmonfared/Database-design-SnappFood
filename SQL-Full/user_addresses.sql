@@ -20,5 +20,5 @@ CREATE TABLE IF NOT EXISTS user_addresses
     updated_at         TIMESTAMP,
     status_code        INT,
     address_extra      VARCHAR(255) CHARACTER SET utf8mb4,
-    client             VARCHAR(255) CHARACTER SET utf8mb4
-);
+    client             VARCHAR(255) CHARACTER SET utf8mb4,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE);

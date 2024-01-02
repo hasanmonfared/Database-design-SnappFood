@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS orders
     status_id                             INT,
     payment_type_id                       INT,
     bank_id                               INT,
+    user_address_id                       INT,
     delivery_area_id                      VARCHAR(255) CHARACTER SET utf8mb4,
     assignee_id                           INT,
     decline_reason_id                     INT,
@@ -71,7 +72,6 @@ CREATE TABLE IF NOT EXISTS orders
     deleted                               VARCHAR(255) CHARACTER SET utf8mb4,
     deleted_at                            TIMESTAMP,
     online_delivery_enabled               INT,
-    user_address_id                       INT,
     replaced_by_order_id                  VARCHAR(255) CHARACTER SET utf8mb4,
     company_order_id                      VARCHAR(255) CHARACTER SET utf8mb4,
     device_id                             VARCHAR(255) CHARACTER SET utf8mb4,
@@ -124,5 +124,12 @@ CREATE TABLE IF NOT EXISTS orders
     order_coupon                          VARCHAR(255) CHARACTER SET utf8mb4,
     coupon_discount_amount                INT,
     coupon_discount_sf_share_amount       INT,
-    special                               INT
+    special                               INT,
+    FOREIGN KEY (vendor_id) REFERENCES vendors (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (customer_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (status_id) REFERENCES status (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (payment_type_id) REFERENCES payment_types (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (user_address_id) REFERENCES user_addresses (id) ON DELETE CASCADE ON UPDATE CASCADE
+
+
 );

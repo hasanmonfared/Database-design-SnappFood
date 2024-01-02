@@ -9,5 +9,8 @@ CREATE TABLE IF NOT EXISTS payment_extra_info
     VIP_membership_plan_id INT,
     bank_token             VARCHAR(255) CHARACTER SET utf8mb4,
     order_id               INT,
-    card_number            VARCHAR(16) CHARACTER SET utf8mb4
+    card_number            VARCHAR(16) CHARACTER SET utf8mb4,
+    FOREIGN KEY (payment_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE ON UPDATE CASCADE
+
 );

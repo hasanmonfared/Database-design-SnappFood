@@ -14,5 +14,8 @@ CREATE TABLE IF NOT EXISTS miss_you_user
     updated_by   VARCHAR(255),
     type         VARCHAR(255),
     picked_by    VARCHAR(255),
-    visible_at   VARCHAR(255)
+    visible_at   TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE ON UPDATE CASCADE
+
 );

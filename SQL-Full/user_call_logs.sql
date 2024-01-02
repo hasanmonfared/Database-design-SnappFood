@@ -13,5 +13,10 @@ CREATE TABLE IF NOT EXISTS user_call_logs
     status      VARCHAR(255) CHARACTER SET utf8mb4,
     vendor_id   INT,
     sub_reason  VARCHAR(255) CHARACTER SET utf8mb4,
-    call_id     VARCHAR(255) CHARACTER SET utf8mb4
+    call_id     VARCHAR(255) CHARACTER SET utf8mb4,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (vendor_id) REFERENCES vendors (id) ON DELETE CASCADE ON UPDATE CASCADE
+
+
 );

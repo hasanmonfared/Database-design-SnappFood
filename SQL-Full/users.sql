@@ -40,3 +40,4 @@ CREATE TABLE IF NOT EXISTS users
     email_subscribed                INT,
     card_number                     VARCHAR(255) CHARACTER SET utf8mb4
 );
+1111

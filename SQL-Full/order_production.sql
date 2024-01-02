@@ -3,9 +3,9 @@ CREATE TABLE IF NOT EXISTS order_production
     id                        INT PRIMARY KEY,
     order_id                  INT,
     product_variation_id      INT,
-    title                     VARCHAR(255) CHARACTER SET utf8mb4,
-    variation_title           VARCHAR(255) CHARACTER SET utf8mb4,
-    description               TEXT CHARACTER SET utf8mb4,
+    title                     VARCHAR(255),
+    variation_title           VARCHAR(255),
+    description               TEXT,
     price                     INT,
     topping_price             INT,
     total_price               INT,
@@ -18,6 +18,6 @@ CREATE TABLE IF NOT EXISTS order_production
     product_discount_zf_share INT,
     order_product_id          INT,
     vat                       INT,
-    created_at                TIMESTAMP,
-    updated_at                TIMESTAMP
+    FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE ON UPDATE CASCADE
+
 );

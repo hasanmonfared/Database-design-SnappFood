@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS device_adjustment_infos
     tracker_name        VARCHAR(255),
     is_organic          INT,
     click_referrer      VARCHAR(255),
-    adjust_created_at   INT,
+    adjust_created_at   TIMESTAMP,
     installed_at        TIMESTAMP,
     created_at          TIMESTAMP,
     ad_id               VARCHAR(255),

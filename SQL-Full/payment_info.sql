@@ -27,5 +27,8 @@ CREATE TABLE IF NOT EXISTS payment_info
     transfer_response   VARCHAR(255) CHARACTER SET utf8mb4,
     tracking_id         INT,
     card_owner          VARCHAR(255) CHARACTER SET utf8mb4,
-    transfer_error_code INT
+    transfer_error_code INT,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE ON UPDATE CASCADE,
+
 );

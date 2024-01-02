@@ -33,5 +33,7 @@ CREATE TABLE IF NOT EXISTS vendor_accounting_infos
     income_adjustment                 INT,
     economic_code                     VARCHAR(255) CHARACTER SET utf8mb4,
     is_legal                          INT,
-    express_income_adjustment         INT
+    express_income_adjustment         INT,
+    FOREIGN KEY (vendor_id) REFERENCES vendors (id) ON DELETE CASCADE ON UPDATE CASCADE
+
 );

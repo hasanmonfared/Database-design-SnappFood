@@ -56,5 +56,6 @@ CREATE TABLE IF NOT EXISTS vendor_accountings
     discounted_total_sale               DECIMAL(20, 2),
     discount_on_revenue                 DECIMAL(20, 2),
     total_service_fee                   DECIMAL(20, 2),
-    express_income_adjustment           DECIMAL(20, 2)
+    express_income_adjustment           DECIMAL(20, 2),
+    FOREIGN KEY (vendor_id) REFERENCES vendors (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
