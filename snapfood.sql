@@ -189,5 +189,551 @@ CREATE TABLE IF NOT EXISTS vendors
     uid                            INT
 );
 
+CREATE TABLE IF NOT EXISTS user_addresses
+(
+    id                 INT PRIMARY KEY,
+    user_id            INT,
+    city_id            INT,
+    latitude           VARCHAR(20) CHARACTER SET utf8mb4,
+    longitude          VARCHAR(20) CHARACTER SET utf8mb4,
+    address            TEXT CHARACTER SET utf8mb4,
+    phone              BIGINT,
+    deleted            INT,
+    type               VARCHAR(255) CHARACTER SET utf8mb4,
+    company_id         INT,
+    company_address_id INT,
+    confirmed          INT,
+    snapp_address_id   VARCHAR(255) CHARACTER SET utf8mb4,
+    snapp_address_type VARCHAR(255) CHARACTER SET utf8mb4,
+    area_id            INT,
+    label              VARCHAR(255) CHARACTER SET utf8mb4,
+    created_at         TIMESTAMP,
+    updated_at         TIMESTAMP,
+    status_code        INT,
+    address_extra      VARCHAR(255) CHARACTER SET utf8mb4,
+    client             VARCHAR(255) CHARACTER SET utf8mb4,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
 
+CREATE TABLE IF NOT EXISTS status
+(
+    id   INT PRIMARY KEY,
+    name VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS payment_types
+(
+    id INT PRIMARY KEY
+
+);
+
+CREATE TABLE IF NOT EXISTS orders
+(
+    id                                    INT PRIMARY KEY,
+    vendor_id                             INT,
+    customer_id                           INT,
+    status_id                             INT,
+    payment_type_id                       INT,
+    bank_id                               INT,
+    user_address_id                       INT,
+    delivery_area_id                      VARCHAR(255) CHARACTER SET utf8mb4,
+    assignee_id                           INT,
+    decline_reason_id                     INT,
+    status_date                           TIMESTAMP,
+    payment_status                        VARCHAR(255) CHARACTER SET utf8mb4,
+    payment_attempts                      INT,
+    customer_comment                      TEXT CHARACTER SET utf8mb4,
+    customer_address_comment              TEXT CHARACTER SET utf8mb4,
+    vendor_comment                        TEXT CHARACTER SET utf8mb4,
+    order_comment                         TEXT CHARACTER SET utf8mb4,
+    expedition_type                       VARCHAR(255) CHARACTER SET utf8mb4,
+    delivery_address_line1                TEXT CHARACTER SET utf8mb4,
+    delivery_address_phone1               BIGINT,
+    delivery_address_city                 VARCHAR(255) CHARACTER SET utf8mb4,
+    delivery_address_company              VARCHAR(255) CHARACTER SET utf8mb4,
+    delivery_address_verified             INT,
+    total_value                           INT,
+    sub_total                             INT,
+    calculated_total                      INT,
+    service_fee                           INT,
+    service_fee_total                     INT,
+    delivery_fee                          INT,
+    delivery_fee_forced                   INT,
+    delivery_time                         INT,
+    minimum_delivery_value                VARCHAR(255) CHARACTER SET utf8mb4,
+    vat                                   INT,
+    free_gift                             VARCHAR(255) CHARACTER SET utf8mb4,
+    commission                            INT,
+    commission_type                       VARCHAR(255) CHARACTER SET utf8mb4,
+    tracking_identifier                   VARCHAR(255) CHARACTER SET utf8mb4,
+    tracking_id                           INT,
+    edited                                INT,
+    source                                VARCHAR(255) CHARACTER SET utf8mb4,
+    email_feedback                        INT,
+    feedback_sent                         INT,
+    pre_order                             INT,
+    preOrder_deliveryTime                 TIMESTAMP,
+    expected_delivery_time                TIMESTAMP,
+    rider_pickup_date_time                TIMESTAMP,
+    delivery_charge                       INT,
+    service_charge                        INT,
+    container_price                       INT,
+    social_reason                         VARCHAR(255) CHARACTER SET utf8mb4,
+    change_for                            VARCHAR(255) CHARACTER SET utf8mb4,
+    archive                               INT,
+    assignee_date                         TIMESTAMP,
+    delivery_fee_original                 VARCHAR(255) CHARACTER SET utf8mb4,
+    service_tax_total                     INT,
+    platform                              VARCHAR(255) CHARACTER SET utf8mb4,
+    vat_amount                            INT,
+    created_at                            TIMESTAMP,
+    updated_at                            TIMESTAMP,
+    delivery_commission_enabled           INT,
+    packaging_commission_enabled          INT,
+    vat_included                          INT,
+    products_vat_enabled                  INT,
+    delivery_vat_enabled                  INT,
+    packaging_vat_enabled                 INT,
+    vat_enabled                           INT,
+    vat_visible                           INT,
+    app_version                           VARCHAR(255) CHARACTER SET utf8mb4,
+    old_order_id                          VARCHAR(255) CHARACTER SET utf8mb4,
+    deleted                               VARCHAR(255) CHARACTER SET utf8mb4,
+    deleted_at                            TIMESTAMP,
+    online_delivery_enabled               INT,
+    replaced_by_order_id                  VARCHAR(255) CHARACTER SET utf8mb4,
+    company_order_id                      VARCHAR(255) CHARACTER SET utf8mb4,
+    device_id                             VARCHAR(255) CHARACTER SET utf8mb4,
+    free_order                            INT,
+    sepidz_order_id                       VARCHAR(255) CHARACTER SET utf8mb4,
+    sepidz_status                         VARCHAR(255) CHARACTER SET utf8mb4,
+    cash_back_amount                      INT,
+    full_name                             VARCHAR(255) CHARACTER SET utf8mb4,
+    vendor_title                          VARCHAR(255) CHARACTER SET utf8mb4,
+    vendor_phone                          VARCHAR(255) CHARACTER SET utf8mb4,
+    assignee_name                         VARCHAR(255) CHARACTER SET utf8mb4,
+    payment_type_code                     VARCHAR(255) CHARACTER SET utf8mb4,
+    bank_code                             VARCHAR(255) CHARACTER SET utf8mb4,
+    status_code                           INT,
+    notify_bodo_food                      INT,
+    manual                                INT,
+    has_delay                             INT,
+    has_delay_disable                     VARCHAR(255) CHARACTER SET utf8mb4,
+    delay_assignee_name                   VARCHAR(255) CHARACTER SET utf8mb4,
+    decline_detail_id                     INT,
+    sub_total_discount                    INT,
+    vat_amount_discount                   INT,
+    container_price_discount              INT,
+    delivery_fee_discount                 INT,
+    vendor_discount_share                 INT,
+    vendor_pick_udid                      VARCHAR(255) CHARACTER SET utf8mb4,
+    decline_comment                       TEXT CHARACTER SET utf8mb4,
+    new_delivery_fee                      INT,
+    is_commission_for_discount            INT,
+    product_discount_value                INT,
+    product_discount_vendor_share         INT,
+    product_discount_type                 VARCHAR(255) CHARACTER SET utf8mb4,
+    product_discount_is_for_all           INT,
+    delta_value                           INT,
+    product_discount_allowed_payment_type VARCHAR(255) CHARACTER SET utf8mb4,
+    paid_by_credit                        INT,
+    user_total_value                      INT,
+    extra_sub_total                       INT,
+    manually_completed_payment            VARCHAR(255) CHARACTER SET utf8mb4,
+    sub_total_discount_zf_share           INT,
+    container_price_discount_zf_share     INT,
+    delivery_fee_discount_zf_share        INT,
+    rider_pickup_time                     INT,
+    in_place_delivery                     INT,
+    real_submitted_at                     TIMESTAMP,
+    need_for_call                         VARCHAR(255) CHARACTER SET utf8mb4,
+    assigned_in_queue                     VARCHAR(255) CHARACTER SET utf8mb4,
+    pre_order_user_request_time           TIMESTAMP,
+    customer_delivered_at                 TIMESTAMP,
+    order_coupon                          VARCHAR(255) CHARACTER SET utf8mb4,
+    coupon_discount_amount                INT,
+    coupon_discount_sf_share_amount       INT,
+    special                               INT,
+    FOREIGN KEY (vendor_id) REFERENCES vendors (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (customer_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (status_id) REFERENCES status (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (payment_type_id) REFERENCES payment_types (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (user_address_id) REFERENCES user_addresses (id) ON DELETE CASCADE ON UPDATE CASCADE
+
+
+);
+CREATE TABLE IF NOT EXISTS payment_info
+(
+    id                  INT PRIMARY KEY,
+    order_id            INT,
+    created_by          INT,
+    updated_by          INT,
+    status              VARCHAR(255) CHARACTER SET utf8mb4,
+    customer_name       VARCHAR(255) CHARACTER SET utf8mb4,
+    receipt_date        VARCHAR(255) CHARACTER SET utf8mb4,
+    order_date          VARCHAR(255) CHARACTER SET utf8mb4,
+    total_amount        INT,
+    bank_title          VARCHAR(255) CHARACTER SET utf8mb4,
+    account_number      VARCHAR(255) CHARACTER SET utf8mb4,
+    description         VARCHAR(255) CHARACTER SET utf8mb4,
+    filename            VARCHAR(255) CHARACTER SET utf8mb4,
+    created_at          TIMESTAMP,
+    paid_at             TIMESTAMP,
+    updated_at          TIMESTAMP,
+    deleted             INT,
+    bank_receipt_id     VARCHAR(255) CHARACTER SET utf8mb4,
+    cellphone           BIGINT,
+    card_number         VARCHAR(16) CHARACTER SET utf8mb4,
+    user_id             INT,
+    decrease_credit     VARCHAR(255) CHARACTER SET utf8mb4,
+    reason              VARCHAR(255) CHARACTER SET utf8mb4,
+    transfer_type       VARCHAR(255) CHARACTER SET utf8mb4,
+    transfer_response   VARCHAR(255) CHARACTER SET utf8mb4,
+    tracking_id         INT,
+    card_owner          VARCHAR(255) CHARACTER SET utf8mb4,
+    transfer_error_code INT,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE ON UPDATE CASCADE
+
+);
+
+
+
+CREATE TABLE IF NOT EXISTS payment_extra_info
+(
+    id                     INT PRIMARY KEY,
+    payment_id             INT,
+    utran                  VARCHAR(255) CHARACTER SET utf8mb4,
+    settle_token           VARCHAR(255) CHARACTER SET utf8mb4,
+    created_at             TIMESTAMP,
+    updated_at             TIMESTAMP,
+    VIP_membership_plan_id INT,
+    bank_token             VARCHAR(255) CHARACTER SET utf8mb4,
+    order_id               INT,
+    card_number            VARCHAR(16) CHARACTER SET utf8mb4,
+    FOREIGN KEY (payment_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE ON UPDATE CASCADE
+
+);
+
+
+CREATE TABLE IF NOT EXISTS order_production
+(
+    id                        INT PRIMARY KEY,
+    order_id                  INT,
+    product_variation_id      INT,
+    title                     VARCHAR(255),
+    variation_title           VARCHAR(255),
+    description               TEXT,
+    price                     INT,
+    topping_price             INT,
+    total_price               INT,
+    discount                  INT,
+    quantity                  INT,
+    container_price           INT,
+    deleted                   VARCHAR(255),
+    product_discount          INT,
+    container_price_discount  INT,
+    product_discount_zf_share INT,
+    order_product_id          INT,
+    vat                       INT,
+    FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE ON UPDATE CASCADE
+
+);
+
+CREATE TABLE IF NOT EXISTS order_extra_info
+(
+    id                          INT PRIMARY KEY,
+    order_id                    INT,
+    customer_ip                 VARCHAR(255),
+    pre_order_only              INT,
+    sent_to_express             INT,
+    zoodfood_comment            TEXT,
+    created_at                  TIMESTAMP,
+    updated_at                  TIMESTAMP,
+    locale                      VARCHAR(255),
+    has_delivery_guaranty       INT,
+    unpaid_delta_settlement     INT,
+    estimated_delivery_time     INT,
+    estimated_rider_pickup_time INT,
+    negative_credit_to_pay      INT,
+    accepted_delivery_time      INT,
+    accepted_rider_pickup_time  INT,
+    segment_group_id            VARCHAR(255),
+    expected_delay_time         INT,
+    FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE ON UPDATE CASCADE
+
+);
+CREATE TABLE IF NOT EXISTS vendor_accounting_infos
+(
+    id                                INT PRIMARY KEY,
+    vendor_id                         INT,
+    created_by                        INT,
+    updated_by                        INT,
+    bank_account_number               VARCHAR(255) CHARACTER SET utf8mb4,
+    bank_account_name                 VARCHAR(255) CHARACTER SET utf8mb4,
+    iban                              VARCHAR(255) CHARACTER SET utf8mb4,
+    card_number                       VARCHAR(255) CHARACTER SET utf8mb4,
+    bank_name                         INT,
+    email_list                        TEXT CHARACTER SET utf8mb4,
+    created_at                        TIMESTAMP,
+    updated_at                        TIMESTAMP,
+    accounting_vat                    INT,
+    last_settled_at                   TIMESTAMP,
+    tadbir_code                       INT,
+    express_commision                 INT,
+    express_max_value                 INT,
+    formal_title                      VARCHAR(255) CHARACTER SET utf8mb4,
+    formal_address                    VARCHAR(255) CHARACTER SET utf8mb4,
+    national_code                     VARCHAR(255) CHARACTER SET utf8mb4,
+    postal_code                       VARCHAR(255) CHARACTER SET utf8mb4,
+    registration_number               VARCHAR(255) CHARACTER SET utf8mb4,
+    has_partial_accounting            INT,
+    accounting_ignore                 INT,
+    express_commision_amount          INT,
+    legal_invoice                     INT,
+    snappbox_contract_commission_date TIMESTAMP,
+    has_partial_weekly_accounting     INT,
+    pay_express_commission            INT,
+    min_express_commission            INT,
+    income_adjustment                 INT,
+    economic_code                     VARCHAR(255) CHARACTER SET utf8mb4,
+    is_legal                          INT,
+    express_income_adjustment         INT,
+    FOREIGN KEY (vendor_id) REFERENCES vendors (id) ON DELETE CASCADE ON UPDATE CASCADE
+
+);
+
+
+CREATE TABLE IF NOT EXISTS vendor_accountings
+(
+    id                                  INT PRIMARY KEY,
+    vendor_id                           INT,
+    created_by                          VARCHAR(255) CHARACTER SET utf8mb4,
+    updated_by                          VARCHAR(255) CHARACTER SET utf8mb4,
+    title                               VARCHAR(255) CHARACTER SET utf8mb4,
+    start_date                          TIMESTAMP,
+    end_date                            TIMESTAMP,
+    commission                          INT,
+    total_sales                         DECIMAL(20, 2),
+    online_sales                        DECIMAL(20, 2),
+    cash_sales                          DECIMAL(20, 2),
+    packaging_costs                     DECIMAL(20, 2),
+    delivery_costs                      DECIMAL(20, 2),
+    commission_value                    DECIMAL(20, 2),
+    vat_value                           DECIMAL(20, 2),
+    payable_value                       DECIMAL(20, 2),
+    extra_costs                         DECIMAL(20, 2),
+    created_at                          TIMESTAMP,
+    updated_at                          TIMESTAMP,
+    status                              VARCHAR(255) CHARACTER SET utf8mb4,
+    sub_total                           DECIMAL(20, 2),
+    order_count                         INT,
+    payable_vat                         DECIMAL(20, 3),
+    excel_file                          VARCHAR(255) CHARACTER SET utf8mb4,
+    total_vat_value                     DECIMAL(20, 2),
+    comment                             TEXT CHARACTER SET utf8mb4,
+    vendor_accounting_period_id         VARCHAR(255) CHARACTER SET utf8mb4,
+    serial_number                       INT,
+    partial_extra_cost                  DECIMAL(20, 2),
+    express_count                       INT,
+    express_value                       DECIMAL(20, 2),
+    express_commission                  DECIMAL(20, 2),
+    express_commision_percent           INT,
+    accounting_ignore                   INT,
+    express_commision_amount            DECIMAL(20, 2),
+    delivery_costs_cash                 DECIMAL(20, 2),
+    packaging_costs_cash                DECIMAL(20, 2),
+    delivery_costs_vat                  DECIMAL(20, 2),
+    delta_value                         DECIMAL(20, 2),
+    free_delivery_coupon_express        INT,
+    discount                            DECIMAL(20, 2),
+    snappbox_contract_commission_date   TIMESTAMP,
+    partial_weekly_extra_cost           DECIMAL(20, 2),
+    partial_daily_extra_cost            DECIMAL(20, 2),
+    reference_code                      VARCHAR(255) CHARACTER SET utf8mb4,
+    csv_imported_by                     INT,
+    csv_imported_at                     TIMESTAMP,
+    pay_express_commission              INT,
+    delivery_costs_vendor_share         DECIMAL(20, 2),
+    snapp_food_extra_payments           DECIMAL(20, 2),
+    partial_daily_settlement_extra_cost DECIMAL(20, 2),
+    cash_back                           DECIMAL(20, 2),
+    voucher_and_discount                DECIMAL(20, 2),
+    discounted_total_sale               DECIMAL(20, 2),
+    discount_on_revenue                 DECIMAL(20, 2),
+    total_service_fee                   DECIMAL(20, 2),
+    express_income_adjustment           DECIMAL(20, 2),
+    FOREIGN KEY (vendor_id) REFERENCES vendors (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+
+CREATE TABLE IF NOT EXISTS vendor_call
+(
+    id          INT PRIMARY KEY,
+    vendor_id   INT,
+    created_by  INT,
+    update_by   INT,
+    description TEXT CHARACTER SET utf8mb4,
+    created_at  TIMESTAMP,
+    updated_at  TIMESTAMP,
+    category    VARCHAR(255) CHARACTER SET utf8mb4,
+    FOREIGN KEY (vendor_id) REFERENCES vendors (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+CREATE TABLE IF NOT EXISTS user_call_logs
+(
+    id          INT PRIMARY KEY,
+    user_id     INT,
+    order_id    INT,
+    reason      VARCHAR(255) CHARACTER SET utf8mb4,
+    cellphone   BIGINT,
+    description TEXT CHARACTER SET utf8mb4,
+    created_at  TIMESTAMP,
+    updated_at  TIMESTAMP,
+    created_by  INT,
+    jira_id     VARCHAR(255) CHARACTER SET utf8mb4,
+    status      VARCHAR(255) CHARACTER SET utf8mb4,
+    vendor_id   INT,
+    sub_reason  VARCHAR(255) CHARACTER SET utf8mb4,
+    call_id     VARCHAR(255) CHARACTER SET utf8mb4,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (vendor_id) REFERENCES vendors (id) ON DELETE CASCADE ON UPDATE CASCADE
+
+
+);
+CREATE TABLE IF NOT EXISTS third_party_users
+(
+    id                         INT PRIMARY KEY,
+    user_id                    INT,
+    cellphone                  BIGINT,
+    source                     VARCHAR(255) CHARACTER SET utf8mb4,
+    created_at                 TIMESTAMP,
+    updated_at                 TIMESTAMP,
+    snapp_push_id              VARCHAR(255) CHARACTER SET utf8mb4,
+    snapp_analytics_id         VARCHAR(255) CHARACTER SET utf8mb4,
+    snapp_user_id              INT,
+    snapp_credit_wallet_number VARCHAR(255) CHARACTER SET utf8mb4,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS devices
+(
+    id              INT PRIMARY KEY,
+    current_user_id INT,
+    app_id          INT,
+    app_version     VARCHAR(255),
+    device_type     VARCHAR(255),
+    udid            VARCHAR(255),
+    # PWA,SUPERAPP,IRANCELL,WEBSITE,ANDROID
+    platform        VARCHAR(255),
+    created_at      TIMESTAMP,
+    updated_at      TIMESTAMP,
+    token           VARCHAR(255),
+    store           VARCHAR(255),
+    adjust_id       VARCHAR(255),
+    google_ad_id    VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS device_adjustment_infos
+(
+    id                  INT PRIMARY KEY,
+    app_id              VARCHAR(255),
+    app_version         VARCHAR(255),
+    app_name            VARCHAR(255),
+    store               VARCHAR(255),
+    tracker             VARCHAR(255),
+    tracker_name        VARCHAR(255),
+    is_organic          INT,
+    click_referrer      VARCHAR(255),
+    adjust_created_at   TIMESTAMP,
+    installed_at        TIMESTAMP,
+    created_at          TIMESTAMP,
+    ad_id               VARCHAR(255),
+    idfa                VARCHAR(255),
+    android_id          VARCHAR(255),
+    push_token          VARCHAR(255),
+    conversion_duration VARCHAR(255),
+    gps_adid            VARCHAR(255),
+    match_type          VARCHAR(255),
+    random_user_id      VARCHAR(255),
+    last_tracker_name   VARCHAR(255),
+    uninstalled_at      VARCHAR(255),
+    country_subdivision VARCHAR(255),
+    city                VARCHAR(255)
+);
+
+CREATE TABLE customer_ticket
+(
+    id           INT PRIMARY KEY,
+    reason_id    INT,
+    jira_task_id INT,
+    order_id     INT,
+    user_id      INT,
+#   CLOSED,SUBMITTED_IN_JIRA,ASSIGNED_TO_AGENT
+    status       VARCHAR(255),
+    description  TEXT,
+    created_at   TIMESTAMP,
+    updated_at   TIMESTAMP,
+    edited_count INT,
+    FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE biz_auth
+(
+    id         INT PRIMARY KEY,
+    firstname  VARCHAR(255),
+    lastname   VARCHAR(255),
+    address    TEXT,
+    email      VARCHAR(255),
+    cellphone  BIGINT,
+    username   VARCHAR(255),
+    pass       VARCHAR(255),
+    token      VARCHAR(255),
+    credit     DECIMAL(18, 2),
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    receipt    VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS miss_you_user
+(
+    id           INT PRIMARY KEY,
+    user_id      INT,
+    order_id     INT,
+    full_name    VARCHAR(255) CHARACTER SET utf8mb4,
+    comment      TEXT CHARACTER SET utf8mb4,
+    cellphone    BIGINT,
+    status       VARCHAR(255),
+    voucher_code VARCHAR(255),
+    created_at   TIMESTAMP,
+    updated_at   TIMESTAMP,
+    calling      VARCHAR(255),
+    updated_by   VARCHAR(255),
+    type         VARCHAR(255),
+    picked_by    VARCHAR(255),
+    visible_at   TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE ON UPDATE CASCADE
+
+);
+
+CREATE TABLE IF NOT EXISTS app_installations
+(
+    id              INT PRIMARY KEY,
+    current_user_id INT,
+    app_id          INT,
+    app_version     VARCHAR(255),
+    device_type     VARCHAR(255),
+    player_id       VARCHAR(255),
+    store           VARCHAR(255),
+    platform        VARCHAR(255),
+    created_at      TIMESTAMP,
+    updated_at      TIMESTAMP,
+    ud_id           VARCHAR(255)
+);
 COMMIT;
